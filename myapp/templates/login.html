@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body{
+       text-align:center;
+       background:url("http://www.pomepos.com/wp-content/uploads/2015/01/LoginRed.jpg");
+       font-family:verdana;
+       background-repeat:no-repeat;
+       font-size:15px;
+       margin:10px;
+
+
+
+    }
+    input[type="submit"]
+        {
+        background:red;
+        color:white;
+        font-size:20px;
+        padding:10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+     <div>
+         <label for="username">Username: </label>
+         <input id="username" type="text" name="username" value={{ username }}>
+     </div>
+
+    <div>
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" value={{ password }}>
+    </div>
+    <input type="submit" value="Log In!">
+</form>
+
+
+</body>

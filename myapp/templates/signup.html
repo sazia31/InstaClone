@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <style>
+    body{
+      text-align:center;
+      background: url("http://midwestwargaming.com/wp-content/uploads/2016/07/weekly-review.jpg");
+      background-size:cover;
+      background-position:center;
+      color: crimson;
+      font-family:georgia;
+      font-size:20px;
+      }
+    input{
+
+         padding:5px;
+         font-size:15px;
+     }
+    input[type="submit"]
+    {
+    background:black;
+    color:white;
+    }
+    h3{
+    color:black;
+    font-family:broadway;
+    font-size:20px;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Instagram Clone!</title>
+</head>
+<body>
+
+	<div class="main">
+            <h1> Instagram Clone!</h1>
+
+    </div>
+
+    <div><form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+            <input type="submit" value="Sign Up">
+        </form>
+
+
+    </div><br>
+
+    <div><h3>Already a user?</h3><a href="login/">Login</a> </div>
+</body>
+</html>
