@@ -162,6 +162,7 @@ def like_view(request):
             existing_like = LikeModel.objects.filter(post_id=post_id, user=user).first()
             if not existing_like:
                 like = LikeModel.objects.create(post_id=post_id, user=user)
+                ctypes.windll.user32.MessageBoxW(0,u"You got a new like!",u"Liked!",0)
                 sg = sendgrid.SendGridAPIClient(apikey=(send_grid_api))
                 from_email = Email("saziakhanna@icloud.com")
                 to_email = Email(like.post.user.email)
