@@ -5,15 +5,14 @@
     <style>
     body{
       text-align:center;
-      background: url("http://midwestwargaming.com/wp-content/uploads/2016/07/weekly-review.jpg");
+      background: url("https://images.pexels.com/photos/488070/pexels-photo-488070.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
       background-size:cover;
       background-position:center;
-      color: crimson;
-      font-family:georgia;
-      font-size:20px;
+
       }
     input{
 
+         border-radius:30px;
          padding:5px;
          font-size:15px;
      }
@@ -25,8 +24,38 @@
     h3{
     color:black;
     font-family:broadway;
-    font-size:20px;
+    font-size:30px;
+    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px white;
     }
+    .main{
+    font-family:broadway;
+    text-align:left;
+    color:white;
+    text-shadow:1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+    .transbox{
+
+    background-color: rgba(10,0,40,0.3);
+    padding: 50px;
+
+    }
+    .sazia{
+    font-family:stencil;
+    text-shadow: 2px 2px 4px white;
+    text-align:center;
+
+    }
+    a{
+    font-family:castellar;
+    font-size:30px;
+    text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color:white;
+
+
+
+    }
+
+
 
     </style>
     <meta charset="UTF-8">
@@ -35,19 +64,24 @@
 <body>
 
 	<div class="main">
-            <h1> Instagram Clone!</h1>
+            <h1> Clement-Critique!</h1>
 
     </div>
+    <div class="transbox">
 
-    <div><form method="post">
+    <div class="sazia">
+
+        <form method="post">
         {% csrf_token %}
         {{form.as_p}}
             <input type="submit" value="Sign Up">
         </form>
 
-
+    </div>
     </div><br>
 
-    <div><h3>Already a user?</h3><a href="login/">Login</a> </div>
+    <div><h3>Already a user?</h3>
+        <a href="login/">Login</a>
+    </div>
 </body>
 </html>

@@ -83,7 +83,7 @@ def login_view(request):
                     token = SessionToken(user=user)
                     token.create_token()
                     token.save()
-                    response = redirect('feed/')
+                    response = redirect('/feed/')
                     response.set_cookie(key='session_token', value=token.session_token)
                     return response
                 else:
@@ -234,3 +234,12 @@ def logout_view(request):
     response = redirect('/login/')
     response.delete_cookie(key='session_token')
     return response
+
+
+def posts_of_particular_user(request,user_name):
+    user=check_validation(request)
+    if user:
+        posts=PostModel.objects.all().filter(user__username=user_name)
+        return render(request,'postsofuser.html',{'posts':posts,'user_name':user_name})
+    else:
+        return redirect('/login/')

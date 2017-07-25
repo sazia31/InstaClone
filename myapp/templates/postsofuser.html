@@ -6,64 +6,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Feeds</title>
-
 </head>
-<style>
-     body{
-        background:url("https://images.pexels.com/photos/482004/pexels-photo-482004.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
-        background-size:cover;
-        }
-
-     .button
-     {
-       text-align:right;
-       padding:20px;
-
-
-
-     }
-     .button1{font-size:16px; color:white; font-size:20px; background:black; }
-
-     a{
-       font-family:algerian;
-       font-size:20px;
-       color:chocolate;
-
-
-     }
-     h3{
-     font-size:20px;
-     font-family:consolas;
-     color:wheat;
-     }
-</style>
-
 <body>
     <form method="post" action="/post/">
         {% csrf_token %}
-        <div class="button">
-            <input type="submit" class="button button1" value="Create Post">
-        </div>
+        <input type="submit" class="btn-default btn" value="Create Post">
     </form>
 
 
   </form><br>
 
-
+    <a href="{%url 'logout'%}">Log out</a>
     {% for post in posts %}
 
 
         <h3> Posted by: {{ post.user.username }} </h3>
-        <p style="color:white">[{{ post.created_on }}]</p>
-
-        <img style="display:inline-block; width:350px; box-shadow: 10px 10px 5px #888888; height:300px; border-radius:30px; border-style:solid; border-color:white;"
+        <p>[{{ post.created_on }}]</p>
+        <img style="display:inline-block; width:350px; height:300px;"
              src="{{ post.image_url }}" /><br>
-        <br>
-        <span  style="display:inline-block; font-family:stencil; padding:10px; color:coral; border-style:solid; border-color:lavender">{{ post.caption }}</span><br/><br/>
-        <div style="display:inline-block; color:white;">
+        <span  style="display:inline-block;">{{ post.caption }}</span><br/><br/>
+        <div style="display:inline-block">
             {{ post.like_count }} likes this
         </div>
-        <div style="display:inline-block;">
+        <div style="display:inline-block">
             <form method="POST" action="/like/">
               {% csrf_token %}
               <input type="hidden" name="post" value="{{ post.id }}" />
@@ -95,10 +60,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-    <br>
 
     {% endfor %}
-    <br>
-    <a href="{%url 'logout'%}">Log out!</a>
 </body>
 </html>
