@@ -88,11 +88,23 @@
 
             <div>
                 {% for comment in post.comments %}
-                    {% if comment.dots  > 0.6 %}
-                        <p style="color:blue"><b>{{ comment.user.username }} [{{ comment.created_on }}]:</b> {{ comment.comment_text }} {{comment.dots}}</p>
-                    {% else %}
-                        <p style="color:red"><b>{{ comment.user.username }} [{{ comment.created_on }}]:</b> {{ comment.comment_text }} {{comment.dots}}</p>
-                    {% endif %}
+                    <tr>
+                                <td>{{ comment.created_on }}
+                                <td>
+                                    <a target="_blank" href="">
+                                        <button type="button" class="btn btn-success btn-xs">
+                                            <span class="glyphicon glyphicon-person"></span>&nbsp;{{ comment.user.username }}
+                                        </button>
+                                    </a>
+                                </td>
+                                <td style="size:100px">
+                                    {% if comment.review == "positive" %}
+                                        <p style="color:blue">{{ comment.comment_text }}:</b>  {{comment.review}}</p>
+                                    {% else %}
+                                        <p style="color:red">{{ comment.comment_text }}:</b>  {{comment.review}}</p></p>
+                                    {% endif %}</td>
+                                </td>
+                            </tr>
                 {% endfor %}
             </div>
     <br>
