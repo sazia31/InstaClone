@@ -55,7 +55,7 @@ class CommentModel(models.Model):
     user= models.ForeignKey(UserModel)
     post = models.ForeignKey(PostModel)
     comment_text = models.CharField(max_length=555)
-    dots = models.FloatField()
+    review = models.CharField(max_length=20)
     # auto_add_now gives time at which comment is created.
     #auto_now gives time on which comment has been updated.
 

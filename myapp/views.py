@@ -182,32 +182,26 @@ def like_view(request):
 
 # To keep record of all comments.
 
-
 def comment_view(request):
     user = check_validation(request)
     if user and request.method == 'POST':
         form = CommentForm(request.POST)
+
         if form.is_valid():
             post_id = form.cleaned_data.get('post').id
-            comment_text = form.cleaned_data.get('comment_text')
-            comment_text = str(comment_text)
-            set_api_key('yOFRCjkrUw0SWjVxxaljRwjLpRhzwRsAjRaCqnGNIWU')
-            dots = sentiment(comment_text)
-            if dots["sentiment"]:
+            post = PostModel.objects.filter(pk=post_id)
+            comment_text = str(form.cleaned_data.get('comment_text'))
+            set_api_key('0qqGfin1x8jlBmHYYft245Shx9YZdoZq8bi83ZlUYDs')
+            review = sentiment(comment_text)
+            print review
+
+            if review['sentiment']:
                 comment = CommentModel.objects.create(user=user, post_id=post_id, comment_text=comment_text,
-                                                      dots=dots['sentiment'])
+                                                      review=review['sentiment'])
+                print comment.review
                 comment.save()
-                sg = sendgrid.SendGridAPIClient(apikey=(send_grid_api))
-                from_email = Email("saziakhanna@icloud.com")
-                to_email = Email(comment.post.user.email)
-                subject = "Welcome to Clement-Critique!"
-                content = Content("text/plain", "You have a new comment! Have a look at what it reviews!" )
-                mail = Mail(from_email, subject, to_email, content)
-                response = sg.client.mail.send.post(request_body=mail.get())
-                print(response.status_code)
-                print(response.body)
-                print(response.headers)
                 return redirect('/feed/')
+
             else:
                 redirect('/feed/')
         else:
